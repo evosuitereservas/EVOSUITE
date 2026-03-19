@@ -182,7 +182,17 @@
                                     <option value="Casa o Apartamento de 3+ Habitaciones">3+ Habitaciones</option>
                                 </select>
                             </div>
-                            <button onclick="estimateEarnings()" id="estimateBtn" class="w-full bg-slate-900 text-white font-bold py-4 rounded-xl hover:bg-slate-800 transition-all shadow-lg flex items-center justify-center gap-2">
+                            <button onclick="estimateEarnings(async function estimateEarnings() {
+            const location = document.getElementById('propLocation').value;
+            const rooms = document.getElementById('propRooms').value;
+            const btn = document.getElementById('estimateBtn');
+            const resultDiv = document.getElementById('estimateResult');
+
+            if (!location) {
+                resultDiv.innerHTML = "Por favor, indícanos dónde se encuentra tu propiedad.";
+                resultDiv.classList.remove('hidden');
+                return;
+            })" id="estimateBtn" class="w-full bg-slate-900 text-white font-bold py-4 rounded-xl hover:bg-slate-800 transition-all shadow-lg flex items-center justify-center gap-2">
                                 Estimar Ingresos con IA ✨
                             </button>
                         </div>
