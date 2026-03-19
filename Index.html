@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EvoSuites | Gestión Profesional de Airbnb en Ecuador</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hero-gradient {
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .loader {
+            border-top-color: #eab308;
+            animation: spinner 1.5s linear infinite;
+        }
+        @keyframes spinner {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .ai-card {
+            transition: all 0.3s ease;
+        }
+        .ai-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-slate-900">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 bg-slate-900/95 backdrop-blur-md text-white border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-black tracking-tighter uppercase">
+                        EV<span class="text-yellow-500"><i class="fas fa-map-marker-alt mx-0.5"></i></span>SUITES
+                    </h1>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-wider">
+                    <a href="#inicio" class="hover:text-yellow-500 transition-colors">Inicio</a>
+                    <a href="#servicios" class="hover:text-yellow-500 transition-colors">Servicios</a>
+                    <a href="#herramientas" class="hover:text-yellow-500 transition-colors">Herramientas IA</a>
+                    <a href="#contacto" class="bg-yellow-500 text-slate-900 px-5 py-2 rounded-full font-bold hover:bg-yellow-400 transition-all">Contacto</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button class="text-white p-2"><i class="fas fa-bars text-2xl"></i></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-gradient min-h-screen flex items-center justify-center pt-20">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <span class="inline-block py-1 px-4 rounded-full bg-yellow-500/20 text-yellow-400 text-xs font-bold uppercase tracking-widest mb-6 border border-yellow-500/30">
+                Especialistas en Rentas Cortas
+            </span>
+            <h1 class="text-4xl md:text-7xl font-black text-white leading-tight mb-8">
+                Maximiza tus ingresos sin mover un <span class="text-yellow-500">dedo.</span>
+            </h1>
+            <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-light">
+                Gestionamos tu propiedad en Airbnb de punta a punta. Desde la limpieza hasta la optimización de precios con IA.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#herramientas" class="bg-yellow-500 hover:bg-yellow-400 text-slate-900 px-10 py-4 rounded-full font-black text-lg shadow-xl transition-all hover:scale-105">
+                    Proyectar Ganancias
+                </a>
+                <a href="https://wa.me/59396335440" class="bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/30 px-10 py-4 rounded-full font-black text-lg transition-all">
+                    Hablar con un Experto
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="bg-slate-900 py-10">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+                <p class="text-yellow-500 text-3xl font-black">+50</p>
+                <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Propiedades</p>
+            </div>
+            <div>
+                <p class="text-yellow-500 text-3xl font-black">4.9</p>
+                <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Rating Promedio</p>
+            </div>
+            <div>
+                <p class="text-yellow-500 text-3xl font-black">20%</p>
+                <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Más Ingresos</p>
+            </div>
+            <div>
+                <p class="text-yellow-500 text-3xl font-black">24/7</p>
+                <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">Soporte</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Servicios -->
+    <section id="servicios" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-slate-900 mb-4 tracking-tight">Gestión Integral 360°</h2>
+                <div class="h-1.5 w-20 bg-yellow-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12">
+                <!-- Card 1 -->
+                <div class="group">
+                    <div class="w-16 h-16 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-rose-600 group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-magic text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Optimización de Listing</h3>
+                    <p class="text-gray-600 leading-relaxed">Creamos perfiles irresistibles con fotos profesionales y títulos estratégicos para posicionarte en los primeros resultados.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="group">
+                    <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-concierge-bell text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Atención al Huésped</h3>
+                    <p class="text-gray-600 leading-relaxed">Respondemos consultas en minutos, gestionamos reservas y resolvemos cualquier duda las 24 horas del día.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="group">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-broom text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Mantenimiento y Limpieza</h3>
+                    <p class="text-gray-600 leading-relaxed">Protocolos de limpieza de hotel 5 estrellas después de cada check-out para asegurar reseñas impecables.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Herramientas IA Section -->
+    <section id="herramientas" class="py-24 bg-slate-50 border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <div class="md:w-1/2">
+                    <span class="text-yellow-600 font-bold uppercase tracking-widest text-sm">Innovación</span>
+                    <h2 class="text-4xl font-black text-slate-900 mt-4 mb-6 leading-tight">Tecnología de Punta para dueños Visionarios</h2>
+                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                        No adivinamos, usamos **Inteligencia Artificial** para analizar datos del mercado en tiempo real en Guayaquil, Salinas y Playas.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 text-slate-700">
+                            <i class="fas fa-check-circle text-green-500"></i> Proyecciones de ingresos reales.
+                        </div>
+                        <div class="flex items-center gap-4 text-slate-700">
+                            <i class="fas fa-check-circle text-green-500"></i> Optimización dinámica de precios.
+                        </div>
+                        <div class="flex items-center gap-4 text-slate-700">
+                            <i class="fas fa-check-circle text-green-500"></i> Redacción persuasiva con LLMs.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 w-full space-y-6">
+                    <!-- IA App Container -->
+                    <div class="bg-white p-8 rounded-3xl shadow-2xl border border-gray-100 ai-card">
+                        <h3 class="text-xl font-bold text-slate-800 flex items-center gap-3 mb-6">
+                            <span class="bg-yellow-500 text-slate-900 w-8 h-8 rounded-lg flex items-center justify-center"><i class="fas fa-robot"></i></span>
+                            Consulta con nuestra IA
+                        </h3>
+                        
+                        <div class="space-y-5">
+                            <div>
+                                <label class="text-xs font-bold text-gray-400 uppercase tracking-widest block mb-2">Ubicación de tu Propiedad</label>
+                                <input id="propLocation" type="text" placeholder="Ej: Puerto Santa Ana, Guayaquil" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-yellow-500 outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-gray-400 uppercase tracking-widest block mb-2">Tipo de Unidad</label>
+                                <select id="propRooms" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-yellow-500 outline-none">
+                                    <option value="Suite / Apartamento de 1 Habitación">Suite / 1 Hab.</option>
+                                    <option value="Apartamento de 2 Habitaciones">2 Habitaciones</option>
+                                    <option value="Casa o Apartamento de 3+ Habitaciones">3+ Habitaciones</option>
+                                </select>
+                            </div>
+                            <button onclick="estimateEarnings()" id="estimateBtn" class="w-full bg-slate-900 text-white font-bold py-4 rounded-xl hover:bg-slate-800 transition-all shadow-lg flex items-center justify-center gap-2">
+                                Estimar Ingresos con IA ✨
+                            </button>
+                        </div>
+
+                        <div id="estimateResult" class="hidden mt-6 p-5 bg-yellow-50 rounded-2xl text-slate-700 border border-yellow-100 leading-relaxed text-sm">
+                            <!-- Resultados dinámicos -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="bg-slate-900 text-white pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2">
+                    <h2 class="text-3xl font-black uppercase mb-6 tracking-tighter">
+                        EV<span class="text-yellow-500"><i class="fas fa-map-marker-alt mx-0.5"></i></span>SUITES
+                    </h2>
+                    <p class="text-gray-400 max-w-sm leading-relaxed mb-8">
+                        Líderes en administración de propiedades para rentas cortas en Ecuador. Transformamos inmuebles en activos de alto rendimiento.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-yellow-500 transition-all"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-yellow-500 transition-all"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-yellow-500 transition-all"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 uppercase tracking-widest text-sm text-yellow-500">Zonas</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li>Guayaquil (Puerto Santa Ana)</li>
+                        <li>Daule (La Aurora)</li>
+                        <li>Salinas / Chipipe</li>
+                        <li>General Villamil Playas</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 uppercase tracking-widest text-sm text-yellow-500">Contacto</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex items-center gap-3"><i class="fas fa-phone text-yellow-500"></i> +593 96 335 440</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-envelope text-yellow-500"></i> info@evosuites.com</li>
+                        <li>
+                            <a href="https://wa.me/59396335440" class="inline-block mt-2 bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-emerald-500 transition-all">
+                                <i class="fab fa-whatsapp mr-2"></i> WhatsApp Directo
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2024 EvoSuites Ecuador. Todos los derechos reservados. Diseñado para Superhosts.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script de IA -->
+    <script>
+        const apiKey = ""; // Inyectado automáticamente
+
+        async function callGemini(prompt) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: { parts: [{ text: "Eres el Consultor IA de EvoSuites, una empresa de administración de Airbnb en Ecuador. Responde de forma profesional, centrada en datos y ventas. Menciona siempre que EvoSuites puede maximizar estos resultados mediante su gestión activa." }] }
+            };
+
+            let retries = 0;
+            const delays = [1000, 2000, 4000, 8000, 16000];
+
+            while (retries < 5) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await response.json();
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text;
+                } catch (error) {
+                    retries++;
+                    if (retries === 5) throw error;
+                    await new Promise(r => setTimeout(r, delays[retries - 1]));
+                }
+            }
+        }
+
+        async function estimateEarnings() {
+            const location = document.getElementById('propLocation').value;
+            const rooms = document.getElementById('propRooms').value;
+            const btn = document.getElementById('estimateBtn');
+            const resultDiv = document.getElementById('estimateResult');
+
+            if (!location) {
+                resultDiv.innerHTML = "Por favor, indícanos dónde se encuentra tu propiedad.";
+                resultDiv.classList.remove('hidden');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<div class="loader w-6 h-6 border-2 rounded-full mx-auto"></div>';
+            resultDiv.classList.add('hidden');
+
+            const prompt = `Analiza el potencial de ingresos de un Airbnb en ${location} de tipo ${rooms}. 
+            1. Proporciona un rango estimado de ingreso mensual en USD.
+            2. Menciona el porcentaje promedio de ocupación esperado en esta zona de Ecuador.
+            3. Da un consejo rápido de por qué EvoSuites es la mejor opción en esa ubicación.
+            Formato: Usa negritas para los números y sé muy directo.`;
+
+            try {
+                const result = await callGemini(prompt);
+                resultDiv.innerHTML = result.replace(/\n/g, '<br>');
+                resultDiv.classList.remove('hidden');
+            } catch (err) {
+                resultDiv.innerHTML = "Error al conectar con el servidor de análisis. Intenta de nuevo.";
+                resultDiv.classList.remove('hidden');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'Estimar Ingresos con IA ✨';
+            }
+        }
+    </script>
+</body>
+</html>
