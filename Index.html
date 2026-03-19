@@ -306,7 +306,71 @@
                 btn.innerHTML = 'Estimar Ingresos con IA ✨';
             }
         }
-    <// --- CONFIGURACIÓN DE EVO SUITES IA ---
+    <// --- CONFIGURACIÓN DE EVO SUITES IA 
+         const apiKey = "AIzaSyD6ZuJS4PDK7-gr4lFBrTlQ23thM1dDBC4"; // Inyectado automáticamente
+
+        async function callGemini(prompt) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: { parts: [{ text: "Eres el Consultor IA de EvoSuites, una empresa de administración de Airbnb en Ecuador. Responde de forma profesional, centrada en datos y ventas. Menciona siempre que EvoSuites puede maximizar estos resultados mediante su gestión activa." }] }
+            };
+
+            let retries = 0;
+            const delays = [1000, 2000, 4000, 8000, 16000];
+
+            while (retries < 5) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await response.json();
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text;
+                } catch (error) {
+                    retries++;
+                    if (retries === 5) throw error;
+                    await new Promise(r => setTimeout(r, delays[retries - 1]));
+                }
+            }
+        }
+
+        async function estimateEarnings() {
+            const location = document.getElementById('propLocation').value;
+            const rooms = document.getElementById('propRooms').value;
+            const btn = document.getElementById('estimateBtn');
+            const resultDiv = document.getElementById('estimateResult');
+
+            if (!location) {
+                resultDiv.innerHTML = "Por favor, indícanos dónde se encuentra tu propiedad.";
+                resultDiv.classList.remove('hidden');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<div class="loader w-6 h-6 border-2 rounded-full mx-auto"></div>';
+            resultDiv.classList.add('hidden');
+
+            const prompt = `Analiza el potencial de ingresos de un Airbnb en ${location} de tipo ${rooms}. 
+            1. Proporciona un rango estimado de ingreso mensual en USD.
+            2. Menciona el porcentaje promedio de ocupación esperado en esta zona de Ecuador.
+            3. Da un consejo rápido de por qué EvoSuites es la mejor opción en esa ubicación.
+            Formato: Usa negritas para los números y sé muy directo.`;
+
+            try {
+                const result = await callGemini(prompt);
+                resultDiv.innerHTML = result.replace(/\n/g, '<br>');
+                resultDiv.classList.remove('hidden');
+            } catch (err) {
+                resultDiv.innerHTML = "Error al conectar con el servidor de análisis. Intenta de nuevo.";
+                resultDiv.classList.remove('hidden');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'Estimar Ingresos con IA ✨';
+            }
+        }
+    < // --- CONFIGURACIÓN DE EVO SUITES IA ---
 const apiKey = "AIzaSyD6ZuJS4PDK7-gr4lFBrTlQ23thM1dDBC4"; // <-- PEGA TU LLAVE DE GOOGLE AI STUDIO AQUÍ
 
 async function callGemini(prompt) {
@@ -385,8 +449,6 @@ async function estimateEarnings() {
         resultDiv.classList.remove('hidden');
     } finally {
         btn.disabled = false;
-        btn.innerHTML = 'Estimar Ingresos con IA ✨';
-    }
-}/script>
+        btn.innerHTML = 'Estimar Ingresos con IA ✨';/script>
 </body>
 </html>
