@@ -306,6 +306,88 @@
                 btn.innerHTML = 'Estimar Ingresos con IA ✨';
             }
         }
-    </script>
+    </script // --- CONFIGURACIÓN DE EVO SUITES IA ---
+const apiKey = "TU_API_KEY_AQUI"; // <-- PEGA TU LLAVE DE GOOGLE AI STUDIO AQUÍ
+
+async function callGemini(prompt) {
+    // Usamos el modelo 1.5 flash que es el estándar actual y gratuito (con límites)
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    
+    const payload = {
+        contents: [{
+            parts: [{
+                text: "Eres el Consultor Experto de EvoSuites Ecuador. Responde de forma profesional y vendedora. " + prompt
+            }]
+        }]
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error?.message || "Error de conexión");
+        }
+
+        const data = await response.json();
+        
+        // Extraemos el texto de la estructura oficial de Gemini
+        if (data.candidates && data.candidates[0].content.parts[0].text) {
+            return data.candidates[0].content.parts[0].text;
+        } else {
+            return "Lo siento, no pude procesar la estimación en este momento.";
+        }
+
+    } catch (error) {
+        console.error("Error en la IA:", error);
+        throw error;
+    }
+}
+
+async function estimateEarnings() {
+    const location = document.getElementById('propLocation').value;
+    const rooms = document.getElementById('propRooms').value;
+    const btn = document.getElementById('estimateBtn');
+    const resultDiv = document.getElementById('estimateResult');
+
+    // Validación simple
+    if (!location || location.trim() === "") {
+        resultDiv.innerHTML = "⚠️ Por favor, escribe la ubicación (ej: Puerto Santa Ana).";
+        resultDiv.classList.remove('hidden');
+        return;
+    }
+
+    // Estado de carga
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Analizando mercado...';
+    resultDiv.classList.add('hidden');
+
+    const prompt = `Analiza el potencial de un Airbnb en ${location} de tipo ${rooms}. 
+    Dame: 1. Ingreso mensual estimado en USD. 2. % de ocupación. 
+    3. Un consejo de por qué EvoSuites es clave allí. Sé directo y usa negritas.`;
+
+    try {
+        const result = await callGemini(prompt);
+        
+        // Convertimos el formato de la IA (Markdown y saltos de línea) a HTML
+        let formattedResult = result
+            .replace(/\n/g, '<br>') 
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            
+        resultDiv.innerHTML = formattedResult;
+        resultDiv.classList.remove('hidden');
+    } catch (err) {
+        resultDiv.innerHTML = "❌ Error: Verifica que tu API Key sea válida o intenta más tarde.";
+        resultDiv.classList.remove('hidden');
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = 'Estimar Ingresos con IA ✨';
+    }
+}
+>
 </body>
 </html>
